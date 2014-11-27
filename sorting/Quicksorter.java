@@ -35,7 +35,7 @@ class Quicksorter {
         a[j] = tmp;
     }
 
-    // partition a from a[i] to a[k], inclusive
+    // find pivot from a[i] to a[k], inclusive
     private static int pivot(int i, int k) {
         return k;
     }
