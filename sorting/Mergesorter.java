@@ -1,10 +1,9 @@
 class Mergesorter {
     public static void sort(int[] a) {
-        int[] tmp = new int[a.length];
-        mergesort(a, tmp, 0, a.length);
+        mergesort(a, new int[a.length], 0, a.length);
     }
 
-    // sort a from a[i] to a[k], exclusive of a[k]
+    // sort from a[i] to a[k], not inclusive of a[k]
     private static void mergesort(int[] a, int[] tmp, int i, int k) {
         if (i < k-1) {
             int p = pivot(i, k);
@@ -14,42 +13,40 @@ class Mergesorter {
         }
     }
 
-    // merge a[i] to a[p] and a[p] to a[k]
+    // merge from a[i] to a[k], not inclusive of a[k]
     private static void merge(int[] a, int[] tmp, int i, int p, int k) {
-        int x = i;
-        int y = p;
+        int j = i;
+        int l = p;
         int m = i;
-        while (x < p && y < k) {
-            if (a[x] < a[y]) {
-                tmp[m] = a[x];
+        // merge the two lists until one runs out
+        while (j < p && l < k) {
+            if (a[j] < a[l]) {
+                tmp[m] = a[j];
+                j++;
                 m++;
-                x++;
             } else {
-                tmp[m] = a[y];
+                tmp[m] = a[l];
+                l++;
                 m++;
-                y++;
             }
         }
-        if (x == p) {
-            while (y < k) {
-                tmp[m] = a[y];
-                m++;
-                y++;
-            }
-        } else {
-            while (x < p) {
-                tmp[m] = a[x];
-                m++;
-                x++;
-            }
+        // clean up the other list
+        while (j < p) {
+            tmp[m] = a[j];
+            j++;
+            m++;
         }
-        // copy values back
-        for (int j = i; j < k; j++) {
+        while (l < k) {
+            tmp[m] = a[l];
+            l++;
+            m++;
+        }
+        // copy back from tmp to a
+        for (j = i; j < k; j++) {
             a[j] = tmp[j];
         }
     }
 
-    // find pivot from a[i] to a[k], exclusive of a[k]
     private static int pivot(int i, int k) {
         return i + (k - i)/2;
     }
