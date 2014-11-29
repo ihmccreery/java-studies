@@ -1,4 +1,4 @@
-class Hashing {
+class Lookup {
     public static void main(String[] args) {
         Hashtable t = new Hashtable();
         int[] nums = {1, 2, 4, 5, 6, 8, 11, 14, 12, 10, 5, 5, 1, 0};
