@@ -1,11 +1,14 @@
 class LinkedList {
     private Node head;
+    private int numEntries;
 
     public LinkedList() {
+        this.numEntries = 0;
     }
 
     public void insert(int a) {
         this.head = new Node(a, this.head);
+        this.numEntries++;
     }
 
     public boolean lookup(int a) {
@@ -16,11 +19,17 @@ class LinkedList {
         }
     }
 
-    public int length() {
+    public int[] values() {
         if (this.head == null) {
-            return 0;
+            return new int[0];
         } else {
-            return this.head.length();
+            int[] values = new int[this.numEntries];
+            Node currentNode = this.head;
+            for(int i = 0; i < numEntries; i++) {
+                values[i] = currentNode.data;
+                currentNode = currentNode.next;
+            }
+            return values;
         }
     }
 
@@ -40,14 +49,6 @@ class LinkedList {
                 return false;
             } else {
                 return this.next.lookup(a);
-            }
-        }
-
-        int length() {
-            if (this.next == null) {
-                return 1;
-            } else {
-                return 1 + this.next.length();
             }
         }
     }
