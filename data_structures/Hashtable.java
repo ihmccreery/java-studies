@@ -1,19 +1,19 @@
 class Hashtable {
-    private boolean[] store;
+    private LinkedList[] store;
 
     Hashtable() {
-        store = new boolean[17];
+        store = new LinkedList[4];
         for (int i = 0; i < store.length; i++) {
-            store[i] = false;
+            store[i] = new LinkedList();
         }
     }
 
     public void insert(int a) {
-        store[hash(a)] = true;
+        store[hash(a)].insert(a);
     }
 
     public boolean lookup(int a) {
-        return store[hash(a)];
+        return store[hash(a)].lookup(a);
     }
 
     private int hash(int a) {

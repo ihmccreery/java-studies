@@ -1,6 +1,6 @@
 class Lookup {
     public static void main(String[] args) {
-        LinkedList t = new LinkedList();
+        Hashtable t = new Hashtable();
         int[] nums = {1, 2, 4, 5, 6, 8, 11, 14, 12, 10, 5, 5, 1, 0};
 
         for (int i = 0; i < nums.length; i++) {
