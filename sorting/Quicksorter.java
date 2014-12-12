@@ -12,26 +12,26 @@ class Quicksorter {
     }
 
     private static int partition(int[] a, int start, int end) {
-        swap(a, pivot(start, end), end); // move pivot to the end
-        int pval = a[end]; // pivot value
-        int j = start; // this points to the first j | j >= pval
-        for (int i = start; i < end; i++) {
-            if (a[i] < pval) {
-                swap(a, i, j);
-                j++;
+        swap(a, pivot(start, end), end);
+        int pivot_value = a[end];
+        int pivot = start;
+        for(int i = start; i < end; i++) {
+            if (a[i] < pivot_value) {
+                swap(a, i, pivot);
+                pivot++;
             }
         }
-        swap(a, end, j);
-        return j;
+        swap(a, pivot, end);
+        return pivot;
     }
 
     private static void swap(int[] a, int i, int j) {
-        int tmp = a[i];
+        int t = a[i];
         a[i] = a[j];
-        a[j] = tmp;
+        a[j] = t;
     }
 
     private static int pivot(int start, int end) {
-        return start + (end-start)/2;
+        return end;
     }
 }
